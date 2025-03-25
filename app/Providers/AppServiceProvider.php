@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Submission;
+use App\Observers\SubmissionObserver;
 use Illuminate\Support\ServiceProvider;
+use App\Services\WordValidationService;
+use App\Contracts\DictionaryServiceInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(DictionaryServiceInterface::class, WordValidationService::class);
     }
 
     /**
@@ -19,6 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Submission::observe(SubmissionObserver::class);
     }
 }

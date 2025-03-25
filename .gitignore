@@ -22,3 +22,5 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+database/.DS_Store
+resources/.DS_Store

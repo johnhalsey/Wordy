@@ -6,6 +6,7 @@ use App\Models\Submission;
 use Illuminate\Support\Str;
 
 use Illuminate\Support\Arr;
+use App\Services\GameService;
 use Illuminate\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -44,22 +45,14 @@ class StoreGameSubmissionRequest extends FormRequest
 
                 // get the game letters from the route
                 $game = $this->route('game');
-                $gameLetters = str_split($game->letters);
-                // loop over any existing game submissions, and remove any previously used letters
-                $game->submissions->each(function (Submission $submission) use ($validator, &$gameLetters) {
-                    foreach (str_split($submission->word) as $letter) {
-                        // no need to check if the letter exisetd here, that should already have been checked when THAT word was submitted
-                        // find the letter in $gameLetters and remove it
-                        if (($key = array_search($letter, $gameLetters)) !== false) {
-                            unset($gameLetters[$key]);
-                        }
-                    }
-                });
+
+                $gameService = new GameService($game);
+                $remainingLetters = $gameService->calculateRemainingLetters();
 
                 // what's left is what we have to play with, check each letter in the submitted word
                 // is available to use
                 foreach(str_split($this->input('word')) as $letter) {
-                    if (array_search($letter, $gameLetters) === false) {
+                    if (array_search($letter, $remainingLetters) === false) {
                         // letter not in remaining letters
                         $validator->errors()->add(
                             'word',

@@ -27,7 +27,7 @@ class GameController extends Controller
         ]);
 
         return Inertia::render('Game', [
-            'letters' => $gameLetters,
+            'letters' => str_split($gameLetters),
             'gameId' => $game->id,
         ]);
     }
