@@ -18,7 +18,6 @@ class WordValidationService implements DictionaryServiceInterface
     public function validate(string $word): bool
     {
         try{
-            $response = $this->adapter->get($word);
             return $this->adapter->get($word)->status() == 200;
         } catch(\Exception $exception){
             // it failed, log our the error for looking at later, tell the user it is not valid

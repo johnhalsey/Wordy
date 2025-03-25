@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Game;
 use Inertia\Inertia;
 use App\Models\Word;
 use Illuminate\Support\Str;
