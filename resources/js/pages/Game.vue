@@ -19,7 +19,7 @@
     </div>
 </template>
 
-<script setup lang="js">
+<script setup>
 import { ref } from 'vue';
 import axios from "axios"
 
