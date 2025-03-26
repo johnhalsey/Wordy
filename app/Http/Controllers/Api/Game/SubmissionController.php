@@ -39,7 +39,8 @@ class SubmissionController extends Controller
 
         return response()->json([
             'remainingLetters' => $letters,
-            'gameId' => $game->id,
+            'gameId'           => $game->id,
+            'submissions'      => $game->submissions
         ], Response::HTTP_CREATED);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Str;
 use App\Services\GameService;
 use Illuminate\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
@@ -48,7 +49,7 @@ class StoreGameSubmissionRequest extends FormRequest
                 // what's left is what we have to play with, check each letter in the submitted word
                 // is available to use
                 foreach(str_split($this->input('word')) as $letter) {
-                    if (array_search($letter, $remainingLetters) === false) {
+                    if (array_search(Str::lower($letter), $remainingLetters) === false) {
                         // letter not in remaining letters
                         $validator->errors()->add(
                             'word',

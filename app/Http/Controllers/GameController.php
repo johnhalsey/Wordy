@@ -26,8 +26,8 @@ class GameController extends Controller
         ]);
 
         return Inertia::render('Game', [
-            'letters' => str_split($gameLetters),
-            'gameId' => $game->id,
+            'letters'     => str_split($gameLetters),
+            'gameId'      => $game->id,
         ]);
     }
 }
