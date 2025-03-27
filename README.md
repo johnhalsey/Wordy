@@ -36,7 +36,7 @@ All the letters in the word exist in the available game letters.
 
 The letters haven't already been used in previous submissions for that game.
 
-If the letters are valid, we then call https://dictionaryapi.dev/ to verify that it is a real word. If it's not, we return an error.
+If the letters are valid, we then call https://dictionaryapi.dev/ api to verify that it is a real word. If it's not, we return an error.
 
 If the word is valid, we insert a row into the submissions table with the game ID, the word, and the score (the number of letters used).
 
