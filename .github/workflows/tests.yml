@@ -47,7 +47,7 @@ jobs:
         run: php artisan ziggy:generate
 
       - name: Build Assets
-        run: npm run build
+        run: npm run dev
 
       - name: Tests
         run: ./vendor/bin/phpunit
